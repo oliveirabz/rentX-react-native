@@ -43,7 +43,7 @@ export const Home = () => {
 
       <CarList
         data={[1, 2, 3, 4, 5, 6, 7]}
-        keyExtractor={(item): any => String(item)}
+        keyExtractor={(item: any): any => String(item)}
         renderItem={({ item }) => <Car data={carData} />}
       />
     </Container>
