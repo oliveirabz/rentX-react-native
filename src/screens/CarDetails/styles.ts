@@ -42,6 +42,19 @@ export const Details = styled.View`
   margin-top: 38px;
 `;
 
+export const Acessories = styled.View`
+  width: 100%;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 16px;
+
+  line-height: ${RFValue(25)}px;
+`;
+
 export const Description = styled.View``;
 
 export const Brand = styled.Text`
