@@ -11,6 +11,7 @@ import ArrowSvg from "../../assets/arrow.svg";
 // Components
 import { BackButton } from "../../components/BackButton";
 import { Button } from "../../components/Button";
+import { Calendar } from "../../components/Calendar";
 
 // Styles
 import {
@@ -62,7 +63,9 @@ export const Scheduling = () => {
         </RentalPeriod>
       </Header>
 
-      <Content></Content>
+      <Content>
+        <Calendar />
+      </Content>
 
       <Footer>
         <Button title="Confirmar" />
