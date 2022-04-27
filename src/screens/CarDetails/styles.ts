@@ -95,3 +95,11 @@ export const About = styled.Text`
 
   margin-top: 23px;
 `;
+
+export const Footer = styled.View`
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.background_secondary};
+
+  /* top, sides, bottom */
+  padding: 24px 24px ${getStatusBarHeight() + 24}px;
+`;

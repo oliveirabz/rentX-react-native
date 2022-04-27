@@ -5,6 +5,7 @@ import React from "react";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
 import { Accessory } from "../../components/Accessory";
+import { Button } from "../../components/Button";
 
 // Assets
 import SpeedSvg from "../../assets/speed.svg";
@@ -29,6 +30,7 @@ import {
   Price,
   About,
   Acessories,
+  Footer,
 } from "./styles";
 
 export const CarDetails = () => {
@@ -74,6 +76,10 @@ export const CarDetails = () => {
           para quem gosta de acelerar.
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 };
