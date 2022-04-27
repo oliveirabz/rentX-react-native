@@ -14,7 +14,7 @@ import {
 } from "@expo-google-fonts/archivo";
 
 // Screens
-import { CarDetails } from "./src/screens/CarDetails";
+import { Scheduling } from "./src/screens/Scheduling";
 
 // Expo
 import AppLoading from "expo-app-loading";
@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CarDetails />
+      <Scheduling />
     </ThemeProvider>
   );
 }
