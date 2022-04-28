@@ -3,6 +3,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 // React Native
 import { FlatList } from "react-native";
+import { CarDTO } from "../../dtos/CarDTO";
 
 // Styles
 import styled from "styled-components/native";
@@ -39,4 +40,4 @@ export const CarList = styled(FlatList).attrs({
     padding: 24,
   },
   showsVerticalIndicator: false,
-})``;
+})`` as React.ComponentType as new <CarDTO>() => FlatList<CarDTO>;
