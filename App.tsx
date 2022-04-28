@@ -1,5 +1,7 @@
 // React
-import React from "react";
+import * as React from "react";
+import 'react-native-gesture-handler'
+// import { NavigationContainer } from '@react-navigation/native';
 
 // Fonts
 import {
@@ -14,7 +16,7 @@ import {
 } from "@expo-google-fonts/archivo";
 
 // Screens
-import { SchedulingComplete } from "./src/screens/SchedulingComplete";
+import { Routes } from "./src/Routes"; 
 
 // Expo
 import AppLoading from "expo-app-loading";
@@ -38,7 +40,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SchedulingComplete />
+      <Routes />
     </ThemeProvider>
   );
 }
