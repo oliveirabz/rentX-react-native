@@ -1,7 +1,7 @@
 // React
 import * as React from "react";
-import 'react-native-gesture-handler'
-// import { NavigationContainer } from '@react-navigation/native';
+import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Fonts
 import {
@@ -15,8 +15,9 @@ import {
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
 
-// Screens
-import { Routes } from "./src/Routes"; 
+// Routes
+import { StackRoutes } from "./src/Routes/stack.routes";
+import { NavigationContainer } from "@react-navigation/native";
 
 // Expo
 import AppLoading from "expo-app-loading";
@@ -24,6 +25,7 @@ import AppLoading from "expo-app-loading";
 // Theme
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
+
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -39,8 +41,12 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Routes />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <StackRoutes />
+        </NavigationContainer>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
