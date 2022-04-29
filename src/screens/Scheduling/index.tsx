@@ -1,7 +1,13 @@
 // React
 import React, { useState } from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
+// date-fns
+import { format } from "date-fns";
+
+// utils
+import { getPlatformDate } from "../../utils/getPlatformDate";
 
 // theme
 import { useTheme } from "styled-components";
@@ -33,6 +39,13 @@ import {
   Footer,
 } from "./styles";
 
+interface RentalPeriod {
+  start: number;
+  startFormatted: string;
+  end: number;
+  endFormatted: string;
+}
+
 export const Scheduling = () => {
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
@@ -40,12 +53,22 @@ export const Scheduling = () => {
   const [markedDates, setMarketDates] = useState<MarkedDateProps>(
     {} as MarkedDateProps
   );
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({
+    startFormatted: "",
+    endFormatted: "",
+    end: 0,
+    start: 0,
+  });
 
   const theme = useTheme();
   const navigation = useNavigation();
 
   function handleSchedulingDetails() {
-    navigation.navigate("SchedulingDetails");
+    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
+      Alert.alert("Selecione o intervalo para alugar");
+    } else {
+      navigation.navigate("SchedulingDetails");
+    }
   }
 
   function handleBack() {
@@ -64,6 +87,19 @@ export const Scheduling = () => {
     setLastSelectedDate(end);
     const interval = generateInterval(start, end);
     setMarketDates(interval);
+
+    const firstDate = Object.keys(interval)[0];
+    const endDate = Object.keys(interval)[Object.keys(interval).length - 1];
+
+    setRentalPeriod({
+      start: start.timestamp,
+      end: end.timestamp,
+      startFormatted: format(
+        getPlatformDate(new Date(firstDate)),
+        "dd/MM/yyyy"
+      ),
+      endFormatted: format(getPlatformDate(new Date(endDate)), "dd/MM/yyyy"),
+    });
   }
 
   return (
@@ -84,7 +120,9 @@ export const Scheduling = () => {
           <DateInfo>
             <DateTitle>De</DateTitle>
             <DateValueWrapper>
-              <DateValue selected={false}>18/06/2022</DateValue>
+              <DateValue selected={rentalPeriod.startFormatted ? true : false}>
+                {rentalPeriod.startFormatted ? rentalPeriod.startFormatted : ""}
+              </DateValue>
             </DateValueWrapper>
           </DateInfo>
 
@@ -93,7 +131,9 @@ export const Scheduling = () => {
           <DateInfo>
             <DateTitle>Até</DateTitle>
             <DateValueWrapper>
-              <DateValue selected={false}>18/06/2022</DateValue>
+              <DateValue selected={rentalPeriod.endFormatted ? true : false}>
+                {rentalPeriod.endFormatted ? rentalPeriod.endFormatted : ""}
+              </DateValue>
             </DateValueWrapper>
           </DateInfo>
         </RentalPeriod>
