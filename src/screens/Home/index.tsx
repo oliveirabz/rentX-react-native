@@ -1,3 +1,6 @@
+// function back, parameter p function navigation e tipagem da nova atualização v6
+
+
 // React
 import React, { useEffect, useState } from "react";
 
@@ -24,24 +27,23 @@ import Logo from "../../assets/logo.svg";
 // Styles
 import { Container, Header, TotalCars, HeaderContent, CarList } from "./styles";
 
+interface NavigationProps {
+  navigate: (
+    screen: string,
+    carObject: {
+      car: CarDTO;
+    }
+  ) => void;
+}
+
 export const Home = () => {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
 
-  const carData = {
-    brand: "Audi",
-    name: "RS 5 Coupé",
-    rent: {
-      period: "Ao dia",
-      price: 120,
-    },
-    thumbnail: "https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png",
-  };
-
-  function handleCarDetails() {
-    navigation.navigate("CarDetails");
+  function handleCarDetails(car: CarDTO) {
+    navigation.navigate("CarDetails", { car });
   }
 
   useEffect(() => {
@@ -80,7 +82,7 @@ export const Home = () => {
           data={cars}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Car data={item} onPress={handleCarDetails} />
+            <Car data={item} onPress={() => handleCarDetails(item)} />
           )}
         />
       )}

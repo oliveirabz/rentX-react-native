@@ -42,7 +42,7 @@ export const Details = styled.View`
   margin-top: 38px;
 `;
 
-export const Acessories = styled.View`
+export const Accessories = styled.View`
   width: 100%;
 
   flex-direction: row;
