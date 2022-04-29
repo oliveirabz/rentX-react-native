@@ -1,6 +1,3 @@
-// useRoutes para recuperar o parameter 'car' da screen Home, tipagem, info. dinamics e
-// .map p cada acessory
-
 // React
 import React from "react";
 
@@ -45,7 +42,7 @@ export const CarDetails = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { car } = route.params as Params;
-  // para recuperar parameters que vem de uma rota. é necessário tipar too
+  // this is to retrieve parameters that come from a route. It is also necessary type too.
   function handleConfirmRental() {
     navigation.navigate("Scheduling");
   }
@@ -82,7 +79,7 @@ export const CarDetails = () => {
             <Accessory
               key={accesory.type}
               name={accesory.name}
-              icon={getAccesoryIcon(accesory.type)} // com arrow function, ele espera de um clique
+              icon={getAccesoryIcon(accesory.type)} // put with as arrow function, it waits for a click
             />
           ))}
         </Accessories>

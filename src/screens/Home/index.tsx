@@ -1,5 +1,3 @@
-// function back, parameter p function navigation e tipagem da nova atualização v6
-
 // React
 import React, { useEffect, useState } from "react";
 

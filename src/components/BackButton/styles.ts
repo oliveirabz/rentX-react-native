@@ -1,12 +1,7 @@
-import styled from 'styled-components/native'
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
+// React Native
+import { BorderlessButton } from "react-native-gesture-handler";
 
+// Styles
+import styled from "styled-components/native";
 
-import { BorderlessButton } from 'react-native-gesture-handler';
-import { RFValue } from 'react-native-responsive-fontsize';
-
-export const Container = styled(BorderlessButton)`
-  margin-top: ${getStatusBarHeight() + RFValue(10)}px;
-
-`;
-
+export const Container = styled(BorderlessButton)``;
