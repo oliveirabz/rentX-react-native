@@ -16,13 +16,8 @@ import { ImageSlider } from "../../components/ImageSlider";
 import { Accessory } from "../../components/Accessory";
 import { Button } from "../../components/Button";
 
-// Assets
-import SpeedSvg from "../../assets/speed.svg";
-import AccelerationSvg from "../../assets/acceleration.svg";
-import ForceSvg from "../../assets/force.svg";
-import GasolineSvg from "../../assets/gasoline.svg";
-import ExchangeSvg from "../../assets/exchange.svg";
-import PeopleSvg from "../../assets/people.svg";
+// utils
+import { getAccesoryIcon } from "../../utils/getAccesoryIcon";
 
 // Styles
 import {
@@ -66,9 +61,7 @@ export const CarDetails = () => {
       </Header>
 
       <CarImages>
-        <ImageSlider
-          imagesUrl={car.photos}
-        />
+        <ImageSlider imagesUrl={car.photos} />
       </CarImages>
 
       <Content>
@@ -89,7 +82,7 @@ export const CarDetails = () => {
             <Accessory
               key={accesory.type}
               name={accesory.name}
-              icon={SpeedSvg}
+              icon={getAccesoryIcon(accesory.type)} // com arrow function, ele espera de um clique
             />
           ))}
         </Accessories>
