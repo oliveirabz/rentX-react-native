@@ -1,13 +1,16 @@
 // React
 import React, { useState } from "react";
 import { StatusBar, Alert } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 // date-fns
 import { format } from "date-fns";
 
 // utils
 import { getPlatformDate } from "../../utils/getPlatformDate";
+
+// types
+import { CarDTO } from "../../dtos/CarDTO";
 
 // theme
 import { useTheme } from "styled-components";
@@ -46,6 +49,10 @@ interface RentalPeriod {
   endFormatted: string;
 }
 
+interface Params {
+  car: CarDTO;
+}
+
 export const Scheduling = () => {
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>(
     {} as DayProps
@@ -62,12 +69,17 @@ export const Scheduling = () => {
 
   const theme = useTheme();
   const navigation = useNavigation();
+  const route = useRoute();
+  const { car } = route.params as Params;
 
   function handleSchedulingDetails() {
     if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
       Alert.alert("Selecione o intervalo para alugar");
     } else {
-      navigation.navigate("SchedulingDetails");
+      navigation.navigate("SchedulingDetails", {
+        car,
+        dates: Object.keys(markedDates),
+      });
     }
   }
 

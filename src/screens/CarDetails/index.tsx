@@ -44,7 +44,7 @@ export const CarDetails = () => {
   const { car } = route.params as Params;
   // this is to retrieve parameters that come from a route. It is also necessary type too.
   function handleConfirmRental() {
-    navigation.navigate("Scheduling");
+    navigation.navigate("Scheduling", { car });
   }
 
   function handleBack() {
