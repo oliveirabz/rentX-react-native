@@ -20,14 +20,23 @@ import { Load } from "../../components/Load";
 
 // assets
 import Logo from "../../assets/logo.svg";
+import { Ionicons } from "@expo/vector-icons";
 
 // Styles
-import { Container, Header, TotalCars, HeaderContent, CarList } from "./styles";
+import {
+  Container,
+  Header,
+  TotalCars,
+  HeaderContent,
+  CarList,
+  MyCarsButton,
+} from "./styles";
+import { useTheme } from "styled-components";
 
 interface NavigationProps {
   navigate: (
     screen: string,
-    carObject: {
+    carObject?: {
       car: CarDTO;
     }
   ) => void;
@@ -38,9 +47,14 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
 
   const navigation = useNavigation<NavigationProps>();
+  const theme = useTheme();
 
   function handleCarDetails(car: CarDTO) {
     navigation.navigate("CarDetails", { car });
+  }
+
+  function handleOpenMyCars() {
+    navigation.navigate("MyCars");
   }
 
   useEffect(() => {
@@ -83,6 +97,10 @@ export const Home = () => {
           )}
         />
       )}
+
+      <MyCarsButton onPress={handleOpenMyCars}>
+        <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
+      </MyCarsButton>
     </Container>
   );
 };
